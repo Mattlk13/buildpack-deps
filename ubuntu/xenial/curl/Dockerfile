@@ -1,19 +1,21 @@
-FROM {{ env.dist }}:{{ env.codename }}
+#
+# NOTE: THIS DOCKERFILE IS GENERATED VIA "apply-templates.sh"
+#
+# PLEASE DO NOT EDIT IT DIRECTLY.
+#
+
+FROM ubuntu:xenial
 
 RUN set -eux; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
-{{ if [ "stretch", "xenial" ] | index(env.codename) then ( -}}
 		apt-transport-https \
-{{ ) else "" end -}}
 		ca-certificates \
 		curl \
 		netbase \
 		wget \
-{{ if env.dist == "ubuntu" then ( -}}
 # https://bugs.debian.org/929417
 		tzdata \
-{{ ) else "" end -}}
 	; \
 	rm -rf /var/lib/apt/lists/*
 

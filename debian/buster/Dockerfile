@@ -1,4 +1,10 @@
-FROM buildpack-deps:{{ env.codename }}-scm
+#
+# NOTE: THIS DOCKERFILE IS GENERATED VIA "apply-templates.sh"
+#
+# PLEASE DO NOT EDIT IT DIRECTLY.
+#
+
+FROM buildpack-deps:buster-scm
 
 RUN set -ex; \
 	apt-get update; \
@@ -25,9 +31,7 @@ RUN set -ex; \
 		liblzma-dev \
 		libmagickcore-dev \
 		libmagickwand-dev \
-{{ if "jessie" != env.codename then ( -}}
 		libmaxminddb-dev \
-{{ ) else "" end -}}
 		libncurses5-dev \
 		libncursesw5-dev \
 		libpng-dev \
